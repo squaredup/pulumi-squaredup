@@ -72,6 +72,96 @@
             }
         }
     },
+    "types": {
+        "squaredup:index/getDataStreamsDataStream:getDataStreamsDataStream": {
+            "properties": {
+                "dataSourceName": {
+                    "type": "string"
+                },
+                "definitionName": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastUpdated": {
+                    "type": "string"
+                },
+                "parentPluginId": {
+                    "type": "string"
+                },
+                "parentPluginVersion": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dataSourceName",
+                "definitionName",
+                "displayName",
+                "id",
+                "lastUpdated",
+                "parentPluginId",
+                "parentPluginVersion",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "squaredup:index/getDatasourcesPlugin:getDatasourcesPlugin": {
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastUpdated": {
+                    "type": "string"
+                },
+                "onPrem": {
+                    "type": "boolean"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "author",
+                "category",
+                "description",
+                "displayName",
+                "id",
+                "lastUpdated",
+                "onPrem",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
     "provider": {
         "description": "The provider type for the squaredup package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
@@ -94,6 +184,441 @@
             "region": {
                 "type": "string",
                 "description": "Region of your SquaredUp instance. May also be set via the SQUAREDUP_REGION environment variable.\n"
+            }
+        }
+    },
+    "resources": {
+        "squaredup:index/dashboard:Dashboard": {
+            "description": "Dashboard are used to visualize data from Data Sources\n\n\n## Import\n\nDashboards can be imported by specifying dashboard id.\n\n```sh\n $ pulumi import squaredup:index/dashboard:Dashboard example dash-123\n```\n\n ",
+            "properties": {
+                "dashboardContent": {
+                    "type": "string",
+                    "description": "The content of the dashboard. This is the rendered dashboard template with the template bindings applied.\n"
+                },
+                "dashboardTemplate": {
+                    "type": "string",
+                    "description": "Dashboard template to use for the dashboard\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The display name of the dashboard\n"
+                },
+                "group": {
+                    "type": "string",
+                    "description": "The group of the dashboard\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "The last updated date of the dashboard\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the dashboard\n"
+                },
+                "schemaVersion": {
+                    "type": "string",
+                    "description": "The schema version of the dashboard\n"
+                },
+                "templateBindings": {
+                    "type": "string",
+                    "description": "Template Bindings used for replacing mustache template in the dashboard template. Needs to be a JSON encoded string.\n"
+                },
+                "workspaceId": {
+                    "type": "string",
+                    "description": "The ID of the workspace where the dashboard is located\n"
+                }
+            },
+            "required": [
+                "dashboardContent",
+                "dashboardTemplate",
+                "displayName",
+                "group",
+                "lastUpdated",
+                "name",
+                "schemaVersion",
+                "templateBindings",
+                "workspaceId"
+            ],
+            "inputProperties": {
+                "dashboardTemplate": {
+                    "type": "string",
+                    "description": "Dashboard template to use for the dashboard\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The display name of the dashboard\n"
+                },
+                "templateBindings": {
+                    "type": "string",
+                    "description": "Template Bindings used for replacing mustache template in the dashboard template. Needs to be a JSON encoded string.\n"
+                },
+                "workspaceId": {
+                    "type": "string",
+                    "description": "The ID of the workspace where the dashboard is located\n"
+                }
+            },
+            "requiredInputs": [
+                "dashboardTemplate",
+                "displayName",
+                "workspaceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Dashboard resources.\n",
+                "properties": {
+                    "dashboardContent": {
+                        "type": "string",
+                        "description": "The content of the dashboard. This is the rendered dashboard template with the template bindings applied.\n"
+                    },
+                    "dashboardTemplate": {
+                        "type": "string",
+                        "description": "Dashboard template to use for the dashboard\n"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "description": "The display name of the dashboard\n"
+                    },
+                    "group": {
+                        "type": "string",
+                        "description": "The group of the dashboard\n"
+                    },
+                    "lastUpdated": {
+                        "type": "string",
+                        "description": "The last updated date of the dashboard\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the dashboard\n"
+                    },
+                    "schemaVersion": {
+                        "type": "string",
+                        "description": "The schema version of the dashboard\n"
+                    },
+                    "templateBindings": {
+                        "type": "string",
+                        "description": "Template Bindings used for replacing mustache template in the dashboard template. Needs to be a JSON encoded string.\n"
+                    },
+                    "workspaceId": {
+                        "type": "string",
+                        "description": "The ID of the workspace where the dashboard is located\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "squaredup:index/datasource:Datasource": {
+            "description": "Data Sources are used to query third party APIs and SquaredUp visualizes the results\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as squaredup from \"@pulumi/squaredup\";\nimport * as squaredup from \"@squaredup/pulumi-squaredup\";\n\nconst sampleData = squaredup.getDatasources({\n    dataSourceName: \"Sample Data\",\n});\nconst sampleDataSource = new squaredup.Datasource(\"sampleDataSource\", {\n    displayName: \"Sample Data\",\n    dataSourceName: sampleData.then(sampleData =\u003e sampleData.plugins?.[0]?.displayName),\n});\nconst adoDatasource = new squaredup.Datasource(\"adoDatasource\", {\n    displayName: \"Azure DevOps\",\n    dataSourceName: \"Azure DevOps\",\n    config: JSON.stringify({\n        org: \"org-name\",\n        accessToken: \"access-token\",\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_squaredup as squaredup\nimport squaredup_pulumi_squaredup as squaredup\n\nsample_data = squaredup.get_datasources(data_source_name=\"Sample Data\")\nsample_data_source = squaredup.Datasource(\"sampleDataSource\",\n    display_name=\"Sample Data\",\n    data_source_name=sample_data.plugins[0].display_name)\nado_datasource = squaredup.Datasource(\"adoDatasource\",\n    display_name=\"Azure DevOps\",\n    data_source_name=\"Azure DevOps\",\n    config=json.dumps({\n        \"org\": \"org-name\",\n        \"accessToken\": \"access-token\",\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Squaredup = Pulumi.Squaredup;\nusing Squaredup = squaredup.SquaredUpPackage.Squaredup;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleData = Squaredup.GetDatasources.Invoke(new()\n    {\n        DataSourceName = \"Sample Data\",\n    });\n\n    var sampleDataSource = new Squaredup.Datasource(\"sampleDataSource\", new()\n    {\n        DisplayName = \"Sample Data\",\n        DataSourceName = sampleData.Apply(getDatasourcesResult =\u003e getDatasourcesResult.Plugins[0]?.DisplayName),\n    });\n\n    var adoDatasource = new Squaredup.Datasource(\"adoDatasource\", new()\n    {\n        DisplayName = \"Azure DevOps\",\n        DataSourceName = \"Azure DevOps\",\n        Config = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"org\"] = \"org-name\",\n            [\"accessToken\"] = \"access-token\",\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/squaredup/pulumi-squaredup/sdk/go/squaredup\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsampleData, err := squaredup.GetDatasources(ctx, \u0026squaredup.GetDatasourcesArgs{\n\t\t\tDataSourceName: pulumi.StringRef(\"Sample Data\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = squaredup.NewDatasource(ctx, \"sampleDataSource\", \u0026squaredup.DatasourceArgs{\n\t\t\tDisplayName:    pulumi.String(\"Sample Data\"),\n\t\t\tDataSourceName: *pulumi.String(sampleData.Plugins[0].DisplayName),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"org\":         \"org-name\",\n\t\t\t\"accessToken\": \"access-token\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = squaredup.NewDatasource(ctx, \"adoDatasource\", \u0026squaredup.DatasourceArgs{\n\t\t\tDisplayName:    pulumi.String(\"Azure DevOps\"),\n\t\t\tDataSourceName: pulumi.String(\"Azure DevOps\"),\n\t\t\tConfig:         pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.squaredup.SquaredupFunctions;\nimport com.pulumi.squaredup.inputs.GetDatasourcesArgs;\nimport com.pulumi.squaredup.Datasource;\nimport com.pulumi.squaredup.DatasourceArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleData = SquaredupFunctions.getDatasources(GetDatasourcesArgs.builder()\n            .dataSourceName(\"Sample Data\")\n            .build());\n\n        var sampleDataSource = new Datasource(\"sampleDataSource\", DatasourceArgs.builder()        \n            .displayName(\"Sample Data\")\n            .dataSourceName(sampleData.applyValue(getDatasourcesResult -\u003e getDatasourcesResult.plugins()[0].displayName()))\n            .build());\n\n        var adoDatasource = new Datasource(\"adoDatasource\", DatasourceArgs.builder()        \n            .displayName(\"Azure DevOps\")\n            .dataSourceName(\"Azure DevOps\")\n            .config(serializeJson(\n                jsonObject(\n                    jsonProperty(\"org\", \"org-name\"),\n                    jsonProperty(\"accessToken\", \"access-token\")\n                )))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleDataSource:\n    type: squaredup:Datasource\n    properties:\n      displayName: Sample Data\n      dataSourceName: ${sampleData.plugins[0].displayName}\n  adoDatasource:\n    type: squaredup:Datasource\n    properties:\n      displayName: Azure DevOps\n      dataSourceName: Azure DevOps\n      config:\n        fn::toJSON:\n          org: org-name\n          accessToken: access-token\nvariables:\n  sampleData:\n    fn::invoke:\n      Function: squaredup:getDatasources\n      Arguments:\n        dataSourceName: Sample Data\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nData Source can be imported by specifying datasource id.\n\n```sh\n $ pulumi import squaredup:index/datasource:Datasource example config-123\n```\n\n ",
+            "properties": {
+                "agentGroupId": {
+                    "type": "string",
+                    "description": "The ID of the agent group to which the data source should connect to (on-prem data sources only)\n"
+                },
+                "config": {
+                    "type": "string",
+                    "description": "Sensitive configuration for the data source. Needs to be a valid JSON\n",
+                    "secret": true
+                },
+                "dataSourceName": {
+                    "type": "string",
+                    "description": "Display name of the data source\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The display name of the data source (Displayed in SquaredUp)\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "The last time the data source was updated\n"
+                }
+            },
+            "required": [
+                "agentGroupId",
+                "dataSourceName",
+                "displayName",
+                "lastUpdated"
+            ],
+            "inputProperties": {
+                "agentGroupId": {
+                    "type": "string",
+                    "description": "The ID of the agent group to which the data source should connect to (on-prem data sources only)\n"
+                },
+                "config": {
+                    "type": "string",
+                    "description": "Sensitive configuration for the data source. Needs to be a valid JSON\n",
+                    "secret": true
+                },
+                "dataSourceName": {
+                    "type": "string",
+                    "description": "Display name of the data source\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The display name of the data source (Displayed in SquaredUp)\n"
+                }
+            },
+            "requiredInputs": [
+                "dataSourceName",
+                "displayName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Datasource resources.\n",
+                "properties": {
+                    "agentGroupId": {
+                        "type": "string",
+                        "description": "The ID of the agent group to which the data source should connect to (on-prem data sources only)\n"
+                    },
+                    "config": {
+                        "type": "string",
+                        "description": "Sensitive configuration for the data source. Needs to be a valid JSON\n",
+                        "secret": true
+                    },
+                    "dataSourceName": {
+                        "type": "string",
+                        "description": "Display name of the data source\n"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "description": "The display name of the data source (Displayed in SquaredUp)\n"
+                    },
+                    "lastUpdated": {
+                        "type": "string",
+                        "description": "The last time the data source was updated\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "squaredup:index/workspace:Workspace": {
+            "description": "Each workspace has its own dashboards, data sources, monitors and scopes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as squaredup from \"@pulumi/squaredup\";\nimport * as squaredup from \"@squaredup/pulumi-squaredup\";\n\nconst sampleData = squaredup.getDatasources({\n    dataSourceName: \"Sample Data\",\n});\nconst sampleDataSource = new squaredup.Datasource(\"sampleDataSource\", {\n    displayName: \"Sample Data\",\n    dataSourceName: sampleData.then(sampleData =\u003e sampleData.plugins?.[0]?.displayName),\n});\nconst applicationWorkspace = new squaredup.Workspace(\"applicationWorkspace\", {\n    displayName: \"Application Team\",\n    description: \"Workspace with Dashboards for Application Team\",\n});\nconst devopsWorkspace = new squaredup.Workspace(\"devopsWorkspace\", {\n    displayName: \"DevOps Team\",\n    description: \"Workspace with Dashboards for DevOps Team\",\n    type: \"application\",\n    tags: [\n        \"terraform\",\n        \"auto-created\",\n    ],\n    openAccessEnabled: true,\n    workspacesLinks: [applicationWorkspace.id],\n    datasourcesLinks: [sampleDataSource.id],\n});\n```\n```python\nimport pulumi\nimport pulumi_squaredup as squaredup\nimport squaredup_pulumi_squaredup as squaredup\n\nsample_data = squaredup.get_datasources(data_source_name=\"Sample Data\")\nsample_data_source = squaredup.Datasource(\"sampleDataSource\",\n    display_name=\"Sample Data\",\n    data_source_name=sample_data.plugins[0].display_name)\napplication_workspace = squaredup.Workspace(\"applicationWorkspace\",\n    display_name=\"Application Team\",\n    description=\"Workspace with Dashboards for Application Team\")\ndevops_workspace = squaredup.Workspace(\"devopsWorkspace\",\n    display_name=\"DevOps Team\",\n    description=\"Workspace with Dashboards for DevOps Team\",\n    type=\"application\",\n    tags=[\n        \"terraform\",\n        \"auto-created\",\n    ],\n    open_access_enabled=True,\n    workspaces_links=[application_workspace.id],\n    datasources_links=[sample_data_source.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Squaredup = Pulumi.Squaredup;\nusing Squaredup = squaredup.SquaredUpPackage.Squaredup;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleData = Squaredup.GetDatasources.Invoke(new()\n    {\n        DataSourceName = \"Sample Data\",\n    });\n\n    var sampleDataSource = new Squaredup.Datasource(\"sampleDataSource\", new()\n    {\n        DisplayName = \"Sample Data\",\n        DataSourceName = sampleData.Apply(getDatasourcesResult =\u003e getDatasourcesResult.Plugins[0]?.DisplayName),\n    });\n\n    var applicationWorkspace = new Squaredup.Workspace(\"applicationWorkspace\", new()\n    {\n        DisplayName = \"Application Team\",\n        Description = \"Workspace with Dashboards for Application Team\",\n    });\n\n    var devopsWorkspace = new Squaredup.Workspace(\"devopsWorkspace\", new()\n    {\n        DisplayName = \"DevOps Team\",\n        Description = \"Workspace with Dashboards for DevOps Team\",\n        Type = \"application\",\n        Tags = new[]\n        {\n            \"terraform\",\n            \"auto-created\",\n        },\n        OpenAccessEnabled = true,\n        WorkspacesLinks = new[]\n        {\n            applicationWorkspace.Id,\n        },\n        DatasourcesLinks = new[]\n        {\n            sampleDataSource.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/squaredup/pulumi-squaredup/sdk/go/squaredup\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsampleData, err := squaredup.GetDatasources(ctx, \u0026squaredup.GetDatasourcesArgs{\n\t\t\tDataSourceName: pulumi.StringRef(\"Sample Data\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsampleDataSource, err := squaredup.NewDatasource(ctx, \"sampleDataSource\", \u0026squaredup.DatasourceArgs{\n\t\t\tDisplayName:    pulumi.String(\"Sample Data\"),\n\t\t\tDataSourceName: *pulumi.String(sampleData.Plugins[0].DisplayName),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tapplicationWorkspace, err := squaredup.NewWorkspace(ctx, \"applicationWorkspace\", \u0026squaredup.WorkspaceArgs{\n\t\t\tDisplayName: pulumi.String(\"Application Team\"),\n\t\t\tDescription: pulumi.String(\"Workspace with Dashboards for Application Team\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = squaredup.NewWorkspace(ctx, \"devopsWorkspace\", \u0026squaredup.WorkspaceArgs{\n\t\t\tDisplayName: pulumi.String(\"DevOps Team\"),\n\t\t\tDescription: pulumi.String(\"Workspace with Dashboards for DevOps Team\"),\n\t\t\tType:        pulumi.String(\"application\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t\tpulumi.String(\"auto-created\"),\n\t\t\t},\n\t\t\tOpenAccessEnabled: pulumi.Bool(true),\n\t\t\tWorkspacesLinks: pulumi.StringArray{\n\t\t\t\tapplicationWorkspace.ID(),\n\t\t\t},\n\t\t\tDatasourcesLinks: pulumi.StringArray{\n\t\t\t\tsampleDataSource.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.squaredup.SquaredupFunctions;\nimport com.pulumi.squaredup.inputs.GetDatasourcesArgs;\nimport com.pulumi.squaredup.Datasource;\nimport com.pulumi.squaredup.DatasourceArgs;\nimport com.pulumi.squaredup.Workspace;\nimport com.pulumi.squaredup.WorkspaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleData = SquaredupFunctions.getDatasources(GetDatasourcesArgs.builder()\n            .dataSourceName(\"Sample Data\")\n            .build());\n\n        var sampleDataSource = new Datasource(\"sampleDataSource\", DatasourceArgs.builder()        \n            .displayName(\"Sample Data\")\n            .dataSourceName(sampleData.applyValue(getDatasourcesResult -\u003e getDatasourcesResult.plugins()[0].displayName()))\n            .build());\n\n        var applicationWorkspace = new Workspace(\"applicationWorkspace\", WorkspaceArgs.builder()        \n            .displayName(\"Application Team\")\n            .description(\"Workspace with Dashboards for Application Team\")\n            .build());\n\n        var devopsWorkspace = new Workspace(\"devopsWorkspace\", WorkspaceArgs.builder()        \n            .displayName(\"DevOps Team\")\n            .description(\"Workspace with Dashboards for DevOps Team\")\n            .type(\"application\")\n            .tags(            \n                \"terraform\",\n                \"auto-created\")\n            .openAccessEnabled(true)\n            .workspacesLinks(applicationWorkspace.id())\n            .datasourcesLinks(sampleDataSource.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleDataSource:\n    type: squaredup:Datasource\n    properties:\n      displayName: Sample Data\n      dataSourceName: ${sampleData.plugins[0].displayName}\n  applicationWorkspace:\n    type: squaredup:Workspace\n    properties:\n      displayName: Application Team\n      description: Workspace with Dashboards for Application Team\n  devopsWorkspace:\n    type: squaredup:Workspace\n    properties:\n      displayName: DevOps Team\n      description: Workspace with Dashboards for DevOps Team\n      type: application\n      tags:\n        - terraform\n        - auto-created\n      openAccessEnabled: true\n      workspacesLinks:\n        - ${applicationWorkspace.id}\n      datasourcesLinks:\n        - ${sampleDataSource.id}\nvariables:\n  sampleData:\n    fn::invoke:\n      Function: squaredup:getDatasources\n      Arguments:\n        dataSourceName: Sample Data\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nWorkspaces can be imported by specifying workspace id.\n\n```sh\n $ pulumi import squaredup:index/workspace:Workspace example space-123\n```\n\n ",
+            "properties": {
+                "datasourcesLinks": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Links to plugins\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the workspace\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The display name of the workspace (Displayed in SquaredUp)\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "The last time the workspace was updated\n"
+                },
+                "openAccessEnabled": {
+                    "type": "boolean",
+                    "description": "Whether open access is enabled for the workspace\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags of the workspace\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Workspace type that can be one of: 'service', 'team', 'application', 'platform', 'product', 'business service', 'microservice', 'customer', 'website', 'component', 'resource', 'system', 'folder', 'other'.\n"
+                },
+                "workspacesLinks": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Links to workspaces\n"
+                }
+            },
+            "required": [
+                "datasourcesLinks",
+                "description",
+                "displayName",
+                "lastUpdated",
+                "openAccessEnabled",
+                "tags",
+                "type",
+                "workspacesLinks"
+            ],
+            "inputProperties": {
+                "datasourcesLinks": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Links to plugins\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the workspace\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The display name of the workspace (Displayed in SquaredUp)\n"
+                },
+                "openAccessEnabled": {
+                    "type": "boolean",
+                    "description": "Whether open access is enabled for the workspace\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags of the workspace\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Workspace type that can be one of: 'service', 'team', 'application', 'platform', 'product', 'business service', 'microservice', 'customer', 'website', 'component', 'resource', 'system', 'folder', 'other'.\n"
+                },
+                "workspacesLinks": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Links to workspaces\n"
+                }
+            },
+            "requiredInputs": [
+                "displayName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Workspace resources.\n",
+                "properties": {
+                    "datasourcesLinks": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Links to plugins\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the workspace\n"
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "description": "The display name of the workspace (Displayed in SquaredUp)\n"
+                    },
+                    "lastUpdated": {
+                        "type": "string",
+                        "description": "The last time the workspace was updated\n"
+                    },
+                    "openAccessEnabled": {
+                        "type": "boolean",
+                        "description": "Whether open access is enabled for the workspace\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The tags of the workspace\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Workspace type that can be one of: 'service', 'team', 'application', 'platform', 'product', 'business service', 'microservice', 'customer', 'website', 'component', 'resource', 'system', 'folder', 'other'.\n"
+                    },
+                    "workspacesLinks": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Links to workspaces\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "squaredup:index/getDataStreams:getDataStreams": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as squaredup from \"@pulumi/squaredup\";\n\nconst example = squaredup.getDataStreams({\n    dataSourceId: \"datasource-id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_squaredup as squaredup\n\nexample = squaredup.get_data_streams(data_source_id=\"datasource-id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Squaredup = Pulumi.Squaredup;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Squaredup.GetDataStreams.Invoke(new()\n    {\n        DataSourceId = \"datasource-id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/squaredup/pulumi-squaredup/sdk/go/squaredup\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := squaredup.GetDataStreams(ctx, \u0026squaredup.GetDataStreamsArgs{\n\t\t\tDataSourceId: \"datasource-id\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.squaredup.SquaredupFunctions;\nimport com.pulumi.squaredup.inputs.GetDataStreamsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = SquaredupFunctions.getDataStreams(GetDataStreamsArgs.builder()\n            .dataSourceId(\"datasource-id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: squaredup:getDataStreams\n      Arguments:\n        dataSourceId: datasource-id\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDataStreams.\n",
+                "properties": {
+                    "dataSourceId": {
+                        "type": "string",
+                        "description": "ID of the data source to get data streams for\n"
+                    },
+                    "dataStreamDefinitionName": {
+                        "type": "string",
+                        "description": "Name of the data stream definition to get particular data stream details\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "dataSourceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDataStreams.\n",
+                "properties": {
+                    "dataSourceId": {
+                        "type": "string",
+                        "description": "ID of the data source to get data streams for\n"
+                    },
+                    "dataStreamDefinitionName": {
+                        "type": "string",
+                        "description": "Name of the data stream definition to get particular data stream details\n"
+                    },
+                    "dataStreams": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/squaredup:index/getDataStreamsDataStream:getDataStreamsDataStream"
+                        },
+                        "description": "Data Streams are used to query third party APIs and SquaredUp visualizes the results\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "dataSourceId",
+                    "dataStreams",
+                    "id"
+                ]
+            }
+        },
+        "squaredup:index/getDatasources:getDatasources": {
+            "description": "Data Sources are used to query third party APIs and SquaredUp visualizes the results\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as squaredup from \"@pulumi/squaredup\";\n\nconst sampleData = squaredup.getDatasources({\n    dataSourceName: \"Sample Data\",\n});\n```\n```python\nimport pulumi\nimport pulumi_squaredup as squaredup\n\nsample_data = squaredup.get_datasources(data_source_name=\"Sample Data\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Squaredup = Pulumi.Squaredup;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleData = Squaredup.GetDatasources.Invoke(new()\n    {\n        DataSourceName = \"Sample Data\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/squaredup/pulumi-squaredup/sdk/go/squaredup\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := squaredup.GetDatasources(ctx, \u0026squaredup.GetDatasourcesArgs{\n\t\t\tDataSourceName: pulumi.StringRef(\"Sample Data\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.squaredup.SquaredupFunctions;\nimport com.pulumi.squaredup.inputs.GetDatasourcesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleData = SquaredupFunctions.getDatasources(GetDatasourcesArgs.builder()\n            .dataSourceName(\"Sample Data\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  sampleData:\n    fn::invoke:\n      Function: squaredup:getDatasources\n      Arguments:\n        dataSourceName: Sample Data\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDatasources.\n",
+                "properties": {
+                    "dataSourceName": {
+                        "type": "string",
+                        "description": "The name of the data source. If not specified, all data sources will be returned.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDatasources.\n",
+                "properties": {
+                    "dataSourceName": {
+                        "type": "string",
+                        "description": "The name of the data source. If not specified, all data sources will be returned.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "plugins": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/squaredup:index/getDatasourcesPlugin:getDatasourcesPlugin"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "plugins",
+                    "id"
+                ]
             }
         }
     }

@@ -1,6 +1,58 @@
 {
     "renames": {
+        "resources": {
+            "squaredup:index/dashboard:Dashboard": "squaredup_dashboard",
+            "squaredup:index/datasource:Datasource": "squaredup_datasource",
+            "squaredup:index/workspace:Workspace": "squaredup_workspace"
+        },
+        "functions": {
+            "squaredup:index/getDataStreams:getDataStreams": "squaredup_data_streams",
+            "squaredup:index/getDatasources:getDatasources": "squaredup_datasources"
+        },
         "renamedProperties": {
+            "squaredup:index/dashboard:Dashboard": {
+                "dashboardContent": "dashboard_content",
+                "dashboardTemplate": "dashboard_template",
+                "displayName": "display_name",
+                "lastUpdated": "last_updated",
+                "schemaVersion": "schema_version",
+                "templateBindings": "template_bindings",
+                "workspaceId": "workspace_id"
+            },
+            "squaredup:index/datasource:Datasource": {
+                "agentGroupId": "agent_group_id",
+                "dataSourceName": "data_source_name",
+                "displayName": "display_name",
+                "lastUpdated": "last_updated"
+            },
+            "squaredup:index/getDataStreams:getDataStreams": {
+                "dataSourceId": "data_source_id",
+                "dataStreamDefinitionName": "data_stream_definition_name",
+                "dataStreams": "data_streams"
+            },
+            "squaredup:index/getDataStreamsDataStream:getDataStreamsDataStream": {
+                "dataSourceName": "data_source_name",
+                "definitionName": "definition_name",
+                "displayName": "display_name",
+                "lastUpdated": "last_updated",
+                "parentPluginId": "parent_plugin_id",
+                "parentPluginVersion": "parent_plugin_version"
+            },
+            "squaredup:index/getDatasources:getDatasources": {
+                "dataSourceName": "data_source_name"
+            },
+            "squaredup:index/getDatasourcesPlugin:getDatasourcesPlugin": {
+                "displayName": "display_name",
+                "lastUpdated": "last_updated",
+                "onPrem": "on_prem"
+            },
+            "squaredup:index/workspace:Workspace": {
+                "datasourcesLinks": "datasources_links",
+                "displayName": "display_name",
+                "lastUpdated": "last_updated",
+                "openAccessEnabled": "open_access_enabled",
+                "workspacesLinks": "workspaces_links"
+            },
             "squaredup:index:Provider": {
                 "apiKey": "api_key"
             }
