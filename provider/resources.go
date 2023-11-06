@@ -22,14 +22,14 @@ import (
 	"strings"
 
 	"github.com/ettle/strcase"
+	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shimprovider "github.com/squaredup/terraform-provider-squaredup/shim"
-	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/squaredup/pulumi-squaredup/provider/pkg/version"
+	shimprovider "github.com/squaredup/terraform-provider-squaredup/shim"
 )
 
 //go:embed cmd/pulumi-resource-squaredup/bridge-metadata.json
@@ -73,67 +73,50 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:    p,
-		Name: "squaredup",
-		// DisplayName is a way to be able to change the casing of the provider
-		// name when being displayed on the Pulumi registry
-		DisplayName: "Squaredup",
-		// The default publisher for all packages is Pulumi.
-		// Change this to your personal name (or a company name) that you
-		// would like to be shown in the Pulumi Registry if this package is published
-		// there.
-		Publisher: "squaredup",
-		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
-		// if this package is published there.
-		//
-		// You may host a logo on a domain you control or add an SVG logo for your package
-		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "https://raw.githubusercontent.com/squaredup/pulumi-squaredup/main/docs/squaredup.png",
-		// PluginDownloadURL is an optional URL used to download the Provider
-		// for use in Pulumi programs
-		// e.g https://github.com/org/pulumi-provider-name/releases/
+		P:                 p,
+		Name:              "squaredup",
+		DisplayName:       "Squaredup",
+		Publisher:         "squaredup",
+		LogoURL:           "", //TODO:https://raw.githubusercontent.com/squaredup/pulumi-squaredup/main/docs/squaredup.png"
 		PluginDownloadURL: "github://api.github.com/squaredup/pulumi-squaredup",
 		Description:       "A Pulumi package for creating and managing Squaredup resources",
-		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
-		// For all available categories, see `Keywords` in
-		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{
+		Keywords: []string{
 			"pulumi",
 			"squaredup",
 			"category/cloud",
 		},
-		License:    "Apache-2.0",
-		Homepage:   "https://www.squaredup.com",
-		Repository: "https://github.com/squaredup/pulumi-squaredup",
-		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
-		// should match the TF provider module's require directive, not any replace directives.
-		Version:   version.Version,
-		GitHubOrg: "squaredup",
+		License:      "Apache-2.0",
+		Homepage:     "https://www.squaredup.com",
+		Repository:   "https://github.com/squaredup/pulumi-squaredup",
+		Version:      version.Version,
+		GitHubOrg:    "squaredup",
 		MetadataInfo: tfbridge.NewProviderMetadata(bridgeMetadata),
-		Config:    map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: tfbridge.MakeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
+		Config: map[string]*tfbridge.SchemaInfo{
+			"region": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SQUAREUP_REGION"},
+				},
+			},
+			"api_key": {
+				Secret: tfbridge.BoolRef(true),
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"SQUAREDUP_API_KEY"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type.
-			//
-			// "aws_iam_role": {
-			//   Tok: makeResource(mainMod, "aws_iam_role"),
-		  // },
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"squaredup_data_source": {Tok: makeResource(mainMod, "squaredup_data_source")},
+			"squaredup_workspace":   {Tok: makeResource(mainMod, "squaredup_workspace")},
+			"squaredup_dashboard":   {Tok: makeResource(mainMod, "squaredup_dashboard")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each data source in the Terraform provider to a Pulumi function.
-			//
-			// "aws_ami": {
-			//	Tok: makeDataSource(mainMod, "aws_ami"),
-			// },
+			"squaredup_datasources": {
+				Tok: makeDataSource(mainMod, "squaredup_datasources"),
+			},
+			"squaredup_data_streams": {
+				Tok: makeDataSource(mainMod, "squaredup_data_streams"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@squaredup/pulumi-squaredup",
@@ -146,10 +129,6 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			// See the documentation for tfbridge.OverlayInfo for how to lay out this
-			// section, or refer to the AWS provider. Delete this section if there are
-			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
 			PackageName: "squaredup_pulumi_squaredup",
