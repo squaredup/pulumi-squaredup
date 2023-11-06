@@ -15,8 +15,8 @@
 package main
 
 import (
-	squaredup "github.com/squaredup/pulumi-squaredup/provider"
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
+	squaredup "github.com/squaredup/pulumi-squaredup/provider"
 )
 
 func main() {

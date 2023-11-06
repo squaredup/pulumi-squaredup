@@ -16,7 +16,7 @@
 package squaredup
 
 import (
-	_ "embed"
+	_ "embed" //for go embed
 	"fmt"
 	"path/filepath"
 	"strings"
