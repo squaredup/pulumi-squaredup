@@ -85,38 +85,22 @@ func Provider() tfbridge.ProviderInfo {
 			"squaredup",
 			"category/cloud",
 		},
-		License:      "Apache-2.0",
-		Homepage:     "https://www.squaredup.com",
-		Repository:   "https://github.com/squaredup/pulumi-squaredup",
-		Version:      version.Version,
-		GitHubOrg:    "squaredup",
-		MetadataInfo: tfbridge.NewProviderMetadata(bridgeMetadata),
-		Config: map[string]*tfbridge.SchemaInfo{
-			"region": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"SQUAREUP_REGION"},
-				},
-			},
-			"api_key": {
-				Secret: tfbridge.BoolRef(true),
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"SQUAREDUP_API_KEY"},
-				},
-			},
-		},
+		License:              "Apache-2.0",
+		Homepage:             "https://www.squaredup.com",
+		Repository:           "https://github.com/squaredup/pulumi-squaredup",
+		Version:              version.Version,
+		GitHubOrg:            "squaredup",
+		MetadataInfo:         tfbridge.NewProviderMetadata(bridgeMetadata),
+		Config:               map[string]*tfbridge.SchemaInfo{},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"squaredup_data_source": {Tok: makeResource(mainMod, "squaredup_data_source")},
-			"squaredup_workspace":   {Tok: makeResource(mainMod, "squaredup_workspace")},
-			"squaredup_dashboard":   {Tok: makeResource(mainMod, "squaredup_dashboard")},
+			"squaredup_dashboard":  {Tok: makeResource(mainMod, "squaredup_dashboard")},
+			"squaredup_datasource": {Tok: makeResource(mainMod, "squaredup_datasource")},
+			"squaredup_workspace":  {Tok: makeResource(mainMod, "squaredup_workspace")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"squaredup_datasources": {
-				Tok: makeDataSource(mainMod, "squaredup_datasources"),
-			},
-			"squaredup_data_streams": {
-				Tok: makeDataSource(mainMod, "squaredup_data_streams"),
-			},
+			"squaredup_data_streams": {Tok: makeDataSource(mainMod, "squaredup_data_streams")},
+			"squaredup_datasources":  {Tok: makeDataSource(mainMod, "squaredup_datasources")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@squaredup/pulumi-squaredup",

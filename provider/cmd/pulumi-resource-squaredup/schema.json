@@ -1,0 +1,100 @@
+{
+    "name": "squaredup",
+    "displayName": "Squaredup",
+    "description": "A Pulumi package for creating and managing Squaredup resources",
+    "keywords": [
+        "pulumi",
+        "squaredup",
+        "category/cloud"
+    ],
+    "homepage": "https://www.squaredup.com",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`squaredup` Terraform Provider](https://github.com/squaredup/terraform-provider-squaredup).",
+    "repository": "https://github.com/squaredup/pulumi-squaredup",
+    "pluginDownloadURL": "github://api.github.com/squaredup/pulumi-squaredup",
+    "publisher": "squaredup",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "compatibility": "tfbridge20",
+            "rootNamespace": "squaredup.SquaredUpPackage"
+        },
+        "go": {
+            "importBasePath": "github.com/squaredup/pulumi-squaredup/sdk/go/squaredup",
+            "generateResourceContainerTypes": true,
+            "generateExtraInputTypes": true
+        },
+        "java": {
+            "basePackage": "com.pulumi.squaredup",
+            "buildFiles": "",
+            "gradleNexusPublishPluginVersion": "",
+            "gradleTest": ""
+        },
+        "nodejs": {
+            "packageName": "@squaredup/pulumi-squaredup",
+            "packageDescription": "A Pulumi package for creating and managing Squaredup resources",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/squaredup/terraform-provider-squaredup)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-squaredup` repo](https://github.com/squaredup/pulumi-squaredup/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-squaredup` repo](https://github.com/squaredup/terraform-provider-squaredup/issues).",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
+        },
+        "python": {
+            "packageName": "squaredup_pulumi_squaredup",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/squaredup/terraform-provider-squaredup)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-squaredup` repo](https://github.com/squaredup/pulumi-squaredup/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-squaredup` repo](https://github.com/squaredup/terraform-provider-squaredup/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
+        }
+    },
+    "config": {
+        "variables": {
+            "apiKey": {
+                "type": "string",
+                "description": "API Key for SquaredUp API. May also be set via the SQUAREDUP_API_KEY environment variable.\n",
+                "secret": true
+            },
+            "region": {
+                "type": "string",
+                "description": "Region of your SquaredUp instance. May also be set via the SQUAREDUP_REGION environment variable.\n"
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the squaredup package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "apiKey": {
+                "type": "string",
+                "description": "API Key for SquaredUp API. May also be set via the SQUAREDUP_API_KEY environment variable.\n",
+                "secret": true
+            },
+            "region": {
+                "type": "string",
+                "description": "Region of your SquaredUp instance. May also be set via the SQUAREDUP_REGION environment variable.\n"
+            }
+        },
+        "inputProperties": {
+            "apiKey": {
+                "type": "string",
+                "description": "API Key for SquaredUp API. May also be set via the SQUAREDUP_API_KEY environment variable.\n",
+                "secret": true
+            },
+            "region": {
+                "type": "string",
+                "description": "Region of your SquaredUp instance. May also be set via the SQUAREDUP_REGION environment variable.\n"
+            }
+        }
+    }
+}

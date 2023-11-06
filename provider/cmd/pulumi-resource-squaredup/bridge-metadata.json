@@ -1,1 +1,12 @@
-{}
+{
+    "renames": {
+        "renamedProperties": {
+            "squaredup:index:Provider": {
+                "apiKey": "api_key"
+            }
+        },
+        "renamedConfigProperties": {
+            "apiKey": "api_key"
+        }
+    }
+}
